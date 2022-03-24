@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,11 +20,8 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String brand;
-
     @Column
-    private String series;
+    private String brand;
 
     @Column
     private String productDescription;
@@ -41,7 +39,6 @@ public class Product {
     @JoinColumn(name = "seller_id", nullable = false)
     private User seller;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "grade_id")
-    private ProductGrade grade;
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
+    private List<ProductCategory> categories;
 }

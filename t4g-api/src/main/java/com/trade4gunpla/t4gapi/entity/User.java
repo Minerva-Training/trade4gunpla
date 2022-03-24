@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,16 +16,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long userId;
 
-    @Column(nullable = false,length = 20)
+    @Column(nullable = false, length = 20)
     private String username;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false)
     private String role;
 
     @OneToMany(mappedBy = "seller")
-    private Set<Product> products;
+    private List<Product> products;
 
 }

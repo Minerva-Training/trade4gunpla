@@ -4,12 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class ProductGrade {
+public class ProductCategory {
 
     @Id
     @Column(nullable = false)
@@ -20,9 +20,10 @@ public class ProductGrade {
     private String name;
 
     @Column
-    private String scale;
+    private String description;
 
-    @OneToMany(mappedBy = "grade")
-    private Set<Product> products;
+    @ManyToMany
+    @JoinTable(name = "PRODUCT_CATEGORY_MAPPING")
+    private List<Product> products;
 
 }
